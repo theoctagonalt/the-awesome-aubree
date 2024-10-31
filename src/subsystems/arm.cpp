@@ -1,6 +1,6 @@
 #include "main.h"
 #include "globals.h"
-#include "subsystems.h"
+#include "arm.h"
 
 namespace Arm{
   bool arm_pid_activated = false;
@@ -47,49 +47,6 @@ namespace Arm{
           error_timeout++;
         }
       }
-    }
-  }
-}
-
-namespace Intake{
-  bool hooks = false;
-  bool floating = false;
-
-  //state -1 = switch to opposite
-  //state 0 = turn off
-  //state 1 = turn on
-  void toggle(int state = -1){
-    if(state == 0){
-      toggle_hooks(0);
-      toggle_floating(0);
-    }else if(state == 1){
-      toggle_hooks(1);
-      toggle_floating(1);
-    }else{
-      toggle_floating();
-      toggle_hooks();
-    }
-  }
-  void toggle_hooks(int state = -1){
-    if(state == 0){
-      hooks_motor.brake();
-      hooks = false;
-    }else if(state == 1){
-      hooks_motor.move_velocity(200);
-      hooks = true;
-    }else{
-      toggle_hooks(!hooks);
-    }
-  }
-  void toggle_floating(int state = -1){
-    if(state == 0){
-      floating_motor.brake();
-      floating = false;
-    }else if(state == 1){
-      floating_motor.move_velocity(200);
-      floating = true;
-    }else{
-      toggle_floating(!floating);
     }
   }
 }
