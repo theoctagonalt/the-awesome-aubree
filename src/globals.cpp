@@ -11,89 +11,50 @@
 #define RIGHT_BACK_MOTOR 5
 #define RIGHT_BACK_MOTOR_TOP 6
 
-#define HOOKS 
-#define INTAKE 
-#define ARM 3 //FIX LATER
+#define HOOKS -99
+#define FLOATING -99 
+#define ARM -99
 
 #define MOGO_MECH_1
 #define MOGO_MECH_2
 
-#define ARM_SENSOR 2 //FIX LATER 
-#define INERTIAL_SENSOR
+#define ARM_SENSOR -99  
+#define INERTIAL_SENSOR -99
+#define AUTON_SELECTOR -99
 
 
 pros::Controller master (pros::E_CONTROLLER_MASTER);
 
-//drivetrain motors
+//motors
 pros::MotorGroup left_motors ({LEFT_FRONT_MOTOR, LEFT_BACK_MOTOR, LEFT_BACK_MOTOR_TOP}, pros::MotorGear::blue);
 pros::MotorGroup right_motors ({RIGHT_FRONT_MOTOR, RIGHT_BACK_MOTOR, RIGHT_BACK_MOTOR_TOP}, pros::MotorGear::blue);
 
 pros::Motor arm_motor (ARM, pros::MotorGear::green);
+pros::Motor hooks_motor(HOOKS, pros::MotorGear::green);
+pros::Motor floating_motor(FLOATING, pros::MotorGear::green);
+
+//sensors
 pros::Rotation arm_sensor (ARM_SENSOR);
+pros::adi::DigitalIn auton_selector (AUTON_SELECTOR);
+pros::IMU inertial (INERTIAL_SENSOR);
 
 //lemlib objects
 
 lemlib::Drivetrain drivetrain (&left_motors, &right_motors, 11.705, lemlib::Omniwheel::NEW_275, 400, 2);
 
 //================================================================= TODO
-lemlib::ControllerSettings angular_controller; 
-lemlib::ControllerSettings lateral_controller;
-lemlib::ControllerSettings arm_controller;
+lemlib::ControllerSettings angular_controller(-99, -99, -99, -99, -99, -99, -99, -99, -99); 
+lemlib::ControllerSettings lateral_controller(-99, -99, -99, -99, -99, -99, -99, -99, -99);
+lemlib::ControllerSettings arm_controller(-99, -99, -99, -99, -99, -99, -99, -99, -99);
 
-lemlib::OdomSensors sensors;
+lemlib::TrackingWheel left_side_imes (&left_motors, lemlib::Omniwheel::NEW_325, -5.8525, 400);
+lemlib::TrackingWheel right_side_imes (&right_motors, lemlib::Omniwheel::NEW_325, 5.8525, 400);
+
+lemlib::OdomSensors sensors (&left_side_imes, &right_side_imes, nullptr, nullptr, &inertial);
 
 lemlib::Chassis chassis (drivetrain, lateral_controller, angular_controller, sensors);
 
-//subsystem functions
+//intake functions
+void toggleIntake(){
 
-enum ArmState { //TODO: SET THE ENUM VALUES TO ROTATION SENSOR VALUES
-  REST,
-  READY,
-  SCORING
-};
-
-void arm_to_state(ArmState state){
-  arm_pid_activated = true;
-  target_arm_state = state;
-  accumulated_error = 0;
-  last_error = 0;
-}
-
-bool arm_pid_activated = false;
-ArmState target_arm_state;
-
-int accumulated_error = 0; 
-int last_error = 0;
-int error_timeout = 0;
-
-void arm_pid(ArmState state){
-  while(true){
-    if(arm_pid_activated){
-      int currentPos = arm_sensor.get_position();
-      int error = currentPos - state;
-
-      if(error > arm_controller.largeError){
-        error_timeout = 0;
-        int p = error;
-        int i = accumulated_error;
-        int d = error - last_error;
-
-        float vel = (arm_controller.kP*p) + (arm_controller.kI*i) + (arm_controller.kD*d);
-
-        arm_motor.move_velocity(vel);
-
-        accumulated_error+=error;
-      }else{
-        if(error_timeout >= arm_controller.largeErrorTimeout){
-          accumulated_error = 0;
-          last_error = 0;
-          error_timeout = 0;
-          arm_pid_activated = false;
-        }else{
-          error_timeout++;
-        }
-      }
-    }
-    pros::delay(1);
-  } 
 }

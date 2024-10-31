@@ -6,5 +6,14 @@
 
 extern pros::Controller master;
 
+extern pros::Motor arm_motor;
+extern pros::Motor hooks_motor;
+extern pros::Motor floating_motor;
+
+extern pros::adi::DigitalIn auton_selector;
+extern pros::Rotation arm_sensor;
+
+extern lemlib::ControllerSettings arm_controller;
 extern lemlib::Chassis chassis;
+
 #endif
