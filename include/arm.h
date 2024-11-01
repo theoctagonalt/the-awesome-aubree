@@ -3,7 +3,7 @@
 
 namespace Arm{
   enum ArmState{ //todo: set the values for enum to the rotation values
-    REST,
+    REST = 0,
     READY,
     SCORING
   };

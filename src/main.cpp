@@ -40,6 +40,11 @@ void opcontrol(){
     }
 
     //arm
+    if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L1)){
+      
+    }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L2)){
+
+    }
     Arm::arm_pid();
 
     //game
