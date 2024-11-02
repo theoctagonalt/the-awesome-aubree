@@ -30,6 +30,12 @@ namespace Arm{
   ArmState get_state(){
     return target_arm_state; 
   }
+  void reset_pid(){
+    accumulated_error = 0;
+    last_error = 0;
+    error_timeout = 0;
+    arm_pid_activated = false;
+  }
   void arm_pid(){
     if(arm_pid_activated){
       int currentPos = arm_sensor.get_position();
@@ -46,12 +52,10 @@ namespace Arm{
         arm_motor.move_velocity(vel);
 
         accumulated_error+=error;
+        last_error = error;
       }else{
         if(error_timeout >= arm_controller.largeErrorTimeout){
-          accumulated_error = 0;
-          last_error = 0;
-          error_timeout = 0;
-          arm_pid_activated = false;
+          reset_pid();
         }else{
           error_timeout++;
         }

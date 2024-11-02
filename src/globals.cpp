@@ -15,8 +15,7 @@
 #define FLOATING -99 
 #define ARM -99
 
-#define MOGO_1 -99
-#define MOGO_2 -99
+#define MOGO -99
 
 #define ARM_SENSOR -99  
 #define INERTIAL_SENSOR -99
@@ -34,8 +33,7 @@ pros::Motor hooks_motor(HOOKS, pros::MotorGear::green);
 pros::Motor floating_motor(FLOATING, pros::MotorGear::green);
 
 //pistons
-pros::adi::DigitalOut mogo_1 (MOGO_1);
-pros::adi::DigitalOut mogo_2 (MOGO_2);
+pros::adi::DigitalOut mogo (MOGO);
 
 //sensors
 pros::Rotation arm_sensor (ARM_SENSOR);

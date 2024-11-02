@@ -20,6 +20,7 @@ namespace Intake{
       toggle_hooks();
     }
   }
+  
   void toggle_hooks(int state = -1){
     if(state == 0){
       hooks_motor.brake();

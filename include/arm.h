@@ -8,6 +8,9 @@ namespace Arm{
     SCORING
   };
 
+  void next_state();
+  void last_state();
+
   ArmState get_state();
   void set_state(ArmState state);
   void arm_pid();

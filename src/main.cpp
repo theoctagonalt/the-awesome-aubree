@@ -38,12 +38,12 @@ void opcontrol(){
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_X)){ //TODO:CHANGE BUTTONS
       Mogo::toggle();
     }
-
+  
     //arm
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L1)){
-      
+      Arm::next_state();
     }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L2)){
-
+      Arm::last_state();
     }
     Arm::arm_pid();
 

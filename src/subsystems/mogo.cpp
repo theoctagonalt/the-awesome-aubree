@@ -7,11 +7,9 @@ namespace Mogo{
   void toggle(int state = -1){
     if(state == -1){
       toggle(!value);
-      toggle(!value);
       return;
     }
-    mogo_1.set_value(state);
-    mogo_2.set_value(state);
+    mogo.set_value(state);
     value = state;
   }
 }
