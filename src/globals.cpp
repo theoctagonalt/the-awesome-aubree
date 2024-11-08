@@ -55,8 +55,3 @@ lemlib::TrackingWheel right_side_imes (&right_motors, lemlib::Omniwheel::NEW_325
 lemlib::OdomSensors sensors (&left_side_imes, &right_side_imes, nullptr, nullptr, &inertial);
 
 lemlib::Chassis chassis (drivetrain, lateral_controller, angular_controller, sensors);
-
-//intake functions
-void toggleIntake(){
-
-}

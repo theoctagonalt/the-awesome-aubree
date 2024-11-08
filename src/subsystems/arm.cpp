@@ -3,9 +3,9 @@
 #include "arm.h"
 
 namespace Arm{
-  int arm_state_values[] = {1, 2, 3}; //TODO: SET ROTATION SENSOR VALUES
+  double arm_state_values[] = {REST_DEG, READY_DEG, SCORING_DEG};
   bool arm_pid_activated = false;
-  ArmState target_arm_state;
+  int target_arm_state;
   int target_arm_state_value = 0;
 
   int accumulated_error = 0; 
@@ -13,13 +13,13 @@ namespace Arm{
   int error_timeout = 0;
 
   void next_state(){
-    set_state(ArmState(target_arm_state+1));
+    if(target_arm_state != SCORING) set_state(target_arm_state+1);
   }
   void last_state(){
-    set_state(ArmState(target_arm_state-1));  
+    if(target_arm_state != REST) set_state(target_arm_state-1);  
   }
 
-  void set_state(ArmState state){
+  void set_state(int state){
     arm_pid_activated = true;
     target_arm_state = state;
     target_arm_state_value = arm_state_values[state];
@@ -27,7 +27,7 @@ namespace Arm{
     last_error = 0;
   }
 
-  ArmState get_state(){
+  int get_state(){
     return target_arm_state; 
   }
   void reset_pid(){

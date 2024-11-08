@@ -50,7 +50,7 @@ namespace Intake{
   }
 
   void update_intake(){
-    if(Arm::get_state() == Arm::ArmState::READY){
+    if(Arm::get_state() == READY){
       //TODO: ADD LOGIC FOR DISTANCE SENSOR DETECTING AND AUTOMATIC TURNOFF
     }
   }
