@@ -23,8 +23,7 @@ void autonomous() {
 	chassis.setPose(0, 0, 90);
 	chassis.moveToPoint(78, 0, 5000);
 	while(chassis.isInMotion()){
-		float avg_distance = (left_motors.get_position() + right_motors.get_position()) / 2;
-		float error = 78 - avg_distance;
+		float error = 78 - chassis.getPose().x;
 		fprintf(output_file, "%din %dms \n", error, time);
 		time+=40;
 		pros::delay(40);
