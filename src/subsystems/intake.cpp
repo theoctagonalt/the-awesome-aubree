@@ -1,14 +1,14 @@
+#include "intake.h"
 #include "main.h"
 #include "globals.h"
 #include "arm.h"
-#include "intake.h"
 
 namespace Intake{
   bool hooks = false;
   bool floating = false;
 
   //this method overrides all other ones
-  void toggle(int state = -1){
+  void toggle(int state){
     if(state == 0){
       toggle_hooks(0);
       toggle_floating(0);
@@ -21,7 +21,7 @@ namespace Intake{
     }
   }
   
-  void toggle_hooks(int state = -1){
+  void toggle_hooks(int state){
     if(state == 0){
       hooks_motor.brake();
       hooks = false;
@@ -32,7 +32,7 @@ namespace Intake{
       toggle_hooks(!hooks);
     }
   }
-  void toggle_floating(int state = -1){
+  void toggle_floating(int state){
     if(state == 0){
       floating_motor.brake();
       floating = false;

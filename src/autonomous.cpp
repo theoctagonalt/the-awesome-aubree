@@ -17,9 +17,18 @@ void screen() {
 void autonomous() {
   int routine = get_routine();
 	pros::Task screenTask(screen);
-  if(routine == -1){
-    pros::delay(9999);
-  }else if(routine == 0){
-    
-  }
+	FILE* output_file = fopen("/usd/lateral_pid.txt", "a");
+	fputs("==============\n", output_file);
+	int time = 0;
+	chassis.setPose(0, 0, 90);
+	chassis.moveToPoint(78, 0, 5000);
+	while(chassis.isInMotion()){
+		float avg_distance = (left_motors.get_position() + right_motors.get_position()) / 2;
+		float error = 78 - avg_distance;
+		fprintf(output_file, "%din %dms \n", error, time);
+		time+=40;
+		pros::delay(40);
+	}
+	chassis.waitUntilDone();
+	fclose(output_file);
 }

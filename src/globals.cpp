@@ -15,7 +15,7 @@
 #define FLOATING -99 
 #define ARM -99
 
-#define MOGO -99
+#define MOGO 8  
 
 #define ARM_SENSOR -99  
 #define INERTIAL_SENSOR -99
@@ -45,9 +45,38 @@ pros::IMU inertial (INERTIAL_SENSOR);
 lemlib::Drivetrain drivetrain (&left_motors, &right_motors, 11.705, lemlib::Omniwheel::NEW_275, 400, 2);
 
 //================================================================= TODO
-lemlib::ControllerSettings angular_controller(-99, -99, -99, -99, -99, -99, -99, -99, -99); 
-lemlib::ControllerSettings lateral_controller(-99, -99, -99, -99, -99, -99, -99, -99, -99);
-lemlib::ControllerSettings arm_controller(-99, -99, -99, -99, -99, -99, -99, -99, -99);
+lemlib::ControllerSettings angular_controller(0, //kP
+                                              0, //kI
+                                              0, //kD
+                                              0, //anti-windup
+                                              1, //small error range (in)
+                                              100, //small error timeout (ms)
+                                              3, //large error range (in)
+                                              500, //large error timeout(ms)
+                                              0  //maximum accel
+                                              ); 
+
+lemlib::ControllerSettings lateral_controller(0,
+                                             0, 
+                                             0, 
+                                             0, 
+                                             0, 
+                                             0, 
+                                             0, 
+                                             0, 
+                                             0
+                                             );
+
+lemlib::ControllerSettings arm_controller(0,
+                                          0, 
+                                          0, 
+                                          0, 
+                                          0, 
+                                          0, 
+                                          0, 
+                                          0, 
+                                          0
+                                          );
 
 lemlib::TrackingWheel left_side_imes (&left_motors, lemlib::Omniwheel::NEW_325, -5.8525, 400);
 lemlib::TrackingWheel right_side_imes (&right_motors, lemlib::Omniwheel::NEW_325, 5.8525, 400);
