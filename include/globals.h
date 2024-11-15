@@ -7,7 +7,7 @@
 extern pros::Controller master;
 
 extern pros::MotorGroup left_motors;
-extern pros::MotorGroup right_motors
+extern pros::MotorGroup right_motors;
 
 extern pros::Motor arm_motor;
 extern pros::Motor hooks_motor;

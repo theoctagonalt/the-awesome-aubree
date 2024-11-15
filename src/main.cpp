@@ -35,7 +35,7 @@ void opcontrol(){
     }
 
     //mogo functions
-    if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_X)){ //TODO:CHANGE BUTTONS
+    if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_RIGHT)){ //TODO:CHANGE BUTTONS
       Mogo::toggle();
     }
   

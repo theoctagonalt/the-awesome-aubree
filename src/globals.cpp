@@ -3,22 +3,23 @@
 
 //TODO: ADD PORT NUMBERS
 
-#define LEFT_FRONT_MOTOR 1
-#define LEFT_BACK_MOTOR 2
-#define LEFT_BACK_MOTOR_TOP 3
+#define LEFT_FRONT_MOTOR -8
+#define LEFT_BACK_MOTOR -9
+#define LEFT_BACK_MOTOR_TOP 10
 
-#define RIGHT_FRONT_MOTOR 4
-#define RIGHT_BACK_MOTOR 5
-#define RIGHT_BACK_MOTOR_TOP 6
+#define RIGHT_FRONT_MOTOR 17
+#define RIGHT_BACK_MOTOR 16
+#define RIGHT_BACK_MOTOR_TOP -15
 
-#define HOOKS -99
-#define FLOATING -99 
-#define ARM -99
+#define HOOKS 12
+#define FLOATING 13 
+#define ARM 19
 
 #define MOGO 8  
 
-#define ARM_SENSOR -99  
-#define INERTIAL_SENSOR -99
+#define ARM_SENSOR 20  
+#define ARM_INTAKE_SENSOR -99
+#define INERTIAL_SENSOR 11
 #define AUTON_SELECTOR -99
 
 
