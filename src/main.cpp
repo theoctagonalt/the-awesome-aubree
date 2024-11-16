@@ -5,6 +5,7 @@
 #include "mogo.h"
 
 int gameTime = 0;
+int r1_hold = 0;
 void opcontrol(){
 	while(true){
     //get the y and x values of the left and right joysticks respectively
@@ -16,19 +17,20 @@ void opcontrol(){
 
     //intake functions
     
-    int r1_hold = 0;
     int hooks_prev_state = 0;
     int floating_prev_state = 0;
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R1)){
       Intake::toggle();
     }else if(master.get_digital(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R1)){
+      master.print(0, 0, "" + r1_hold);
       r1_hold++;
-      if(r1_hold == 20){
+      if(r1_hold == 50){
+        master.print(0, 0, "h");
         hooks_prev_state = Intake::hooks_state();
         floating_prev_state = Intake::floating_state();
         Intake::reverse();
       }
-    }else if(r1_hold > 20){
+    }else if(r1_hold > 50){
       r1_hold = 0;
       Intake::toggle_hooks(hooks_prev_state);
       Intake::toggle_floating(floating_prev_state);
