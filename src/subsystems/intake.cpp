@@ -4,43 +4,31 @@
 #include "arm.h"
 
 namespace Intake{
-  bool hooks = false;
+  int hooks = false;
   bool floating = false;
 
   //this method overrides all other ones
-  void toggle(int state){
-    if(state == 0){
-      toggle_hooks(0);
-      toggle_floating(0);
-    }else if(state == 1){
-      toggle_hooks(1);
-      toggle_floating(1);
-    }else{
-      toggle_floating();
-      toggle_hooks();
-    }
+  void toggle(int state=0){
+    toggle_hooks(state);
+    toggle_floating(state);
   }
   
-  void toggle_hooks(int state){
-    if(state == 0){
+  void toggle_hooks(int state){ //1 = forward, -1 = reverse
+    if(hooks == state){
       hooks_motor.brake();
-      hooks = false;
-    }else if(state == 1){
-      hooks_motor.move_velocity(200);
-      hooks = true;
+      hooks = 0;
     }else{
-      toggle_hooks(!hooks);
+      hooks_motor.move_velocity(state * -200);
+      hooks = state;
     }
   }
   void toggle_floating(int state){
-    if(state == 0){
+    if(floating == state){
       floating_motor.brake();
-      floating = false;
-    }else if(state == 1){
-      floating_motor.move_velocity(200);
-      floating = true;
+      floating = 0;
     }else{
-      toggle_floating(!floating);
+      floating_motor.move_velocity(state * -200);
+      floating = state;
     }
   }
 
