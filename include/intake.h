@@ -3,9 +3,9 @@
 
 namespace Intake{
 
-  void toggle(int state = -1);
-  void toggle_hooks(int state = -1);
-  void toggle_floating(int state = -1);
+  void toggle(int state = 0);
+  void toggle_hooks(int state);
+  void toggle_floating(int state);
   void reverse();
 
   int hooks_state();

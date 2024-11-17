@@ -15,10 +15,10 @@ void disabled() {}
 void competition_initialize() {
 	while(true){
 		pros::lcd::set_text(0, "Autonomous selector");
-		if(auton_selector.get_new_press()){
-			if(routine != 5) routine++;
-			else routine = -1;
-		}
+		// if(auton_selector.get_new_press()){
+		// 	if(routine != 5) routine++;
+		// 	else routine = -1;
+		// }
 		std::string output = "";
 		switch(routine){
 			case NO_ROUTE:

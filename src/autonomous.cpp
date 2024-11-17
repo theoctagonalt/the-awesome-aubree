@@ -17,16 +17,19 @@ void screen() {
 void autonomous() {
   int routine = get_routine();
 	pros::Task screenTask(screen);
-	FILE* output_file = fopen("/usd/lateral_pid.txt", "a");
+	FILE* output_file = fopen("/usd/lateral_pid_10.txt", "a");
 	fputs("==============\n", output_file);
-	int time = 0;
+	float time = 0;
 	chassis.setPose(0, 0, 90);
-	chassis.moveToPoint(78, 0, 5000);
+	chassis.moveToPoint(10, 0, 5000);
 	while(chassis.isInMotion()){
+		pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+		pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+		pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
 		float error = 78 - chassis.getPose().x;
-		fprintf(output_file, "%din %dms \n", error, time);
+		fprintf(output_file, "%fin %fms \n", error, time);
 		time+=40;
-		pros::delay(40);
+		pros::delay(250);
 	}
 	chassis.waitUntilDone();
 	fclose(output_file);

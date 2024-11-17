@@ -57,9 +57,9 @@ lemlib::ControllerSettings angular_controller(0, //kP
                                               0  //maximum accel
                                               ); 
 
-lemlib::ControllerSettings lateral_controller(0,
-                                             0, 
-                                             0, 
+lemlib::ControllerSettings lateral_controller(3.5,
+                                             0.002, 
+                                             0.1, 
                                              0, 
                                              0, 
                                              0, 

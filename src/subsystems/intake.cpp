@@ -4,11 +4,11 @@
 #include "arm.h"
 
 namespace Intake{
-  int hooks = false;
-  bool floating = false;
+  int hooks = 0;
+  int floating = 0;
 
   //this method overrides all other ones
-  void toggle(int state=0){
+  void toggle(int state){
     toggle_hooks(state);
     toggle_floating(state);
   }
@@ -18,7 +18,7 @@ namespace Intake{
       hooks_motor.brake();
       hooks = 0;
     }else{
-      hooks_motor.move_velocity(state * -200);
+      hooks_motor.move_velocity(state * 200);
       hooks = state;
     }
   }
@@ -27,7 +27,7 @@ namespace Intake{
       floating_motor.brake();
       floating = 0;
     }else{
-      floating_motor.move_velocity(state * -200);
+      floating_motor.move_velocity(state * 200);
       floating = state;
     }
   }
