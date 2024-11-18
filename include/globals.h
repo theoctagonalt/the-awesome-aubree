@@ -14,6 +14,7 @@ extern pros::Motor hooks_motor;
 extern pros::Motor floating_motor;
 
 extern pros::adi::DigitalOut mogo;
+extern pros::adi::DigitalOut doinker;
 
 extern pros::adi::DigitalIn auton_selector;
 extern pros::Rotation arm_sensor;

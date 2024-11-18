@@ -16,6 +16,7 @@
 #define ARM 19
 
 #define MOGO 8  
+#define DOINKER 7
 
 #define ARM_SENSOR 20  
 #define ARM_INTAKE_SENSOR -99
@@ -35,6 +36,7 @@ pros::Motor floating_motor(FLOATING, pros::MotorGear::green);
 
 //pistons
 pros::adi::DigitalOut mogo (MOGO);
+pros::adi::DigitalOut doinker (DOINKER);
 
 //sensors
 pros::Rotation arm_sensor (ARM_SENSOR);

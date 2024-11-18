@@ -3,6 +3,7 @@
 #include "intake.h"
 #include "arm.h"
 #include "mogo.h"
+#include "doinker.h"
 
 int gameTime = 0;
 int r1_hold = 0;
@@ -28,6 +29,11 @@ void opcontrol(){
     //mogo functions
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_RIGHT)){
       Mogo::toggle();
+    }
+
+    //doinker
+    if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_Y)){
+      Doinker::toggle();
     }
   
     //arm
