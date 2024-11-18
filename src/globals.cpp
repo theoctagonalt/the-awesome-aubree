@@ -60,12 +60,12 @@ lemlib::ControllerSettings angular_controller(0, //kP
 lemlib::ControllerSettings lateral_controller(3.5,
                                              0.002, 
                                              0.1, 
-                                             0, 
-                                             0, 
-                                             0, 
-                                             0, 
-                                             0, 
-                                             0
+                                             3, 
+                                             1, 
+                                             100, 
+                                             2, 
+                                             500, 
+                                             0 //TODO: TUNE SLEW
                                              );
 
 lemlib::ControllerSettings arm_controller(0,

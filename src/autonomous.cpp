@@ -21,13 +21,13 @@ void autonomous() {
 	fputs("==============\n", output_file);
 	float time = 0;
 	chassis.setPose(0, 0, 90);
-	chassis.moveToPoint(10, 0, 5000);
+	chassis.turnToHeading(270, 5000);
 	while(chassis.isInMotion()){
 		pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
 		pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
 		pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-		float error = 78 - chassis.getPose().x;
-		fprintf(output_file, "%fin %fms \n", error, time);
+		float theta = chassis.getPose().theta;
+		fprintf(output_file, "%f\n",theta);
 		time+=40;
 		pros::delay(250);
 	}
