@@ -8,7 +8,7 @@
 #include "./subsystems/mogo.h"
 
 void pos_routine(int alliance_colour){ //0 = red, 1 = blue
-    int starting_dir = alliance_colour ? 17.336 : 162.664;
+    int starting_dir = alliance_colour ? 72.664 : 341.664;
     int n = alliance_colour ? 1 : -1;
 
     //set the starting pose to the accurate point and heading
