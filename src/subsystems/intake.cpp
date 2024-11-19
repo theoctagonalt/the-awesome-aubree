@@ -1,7 +1,7 @@
-#include "intake.h"
+#include "./subsystems/intake.h"
 #include "main.h"
 #include "globals.h"
-#include "arm.h"
+#include "./subsystems/arm.h"
 
 namespace Intake{
   int hooks = 0;

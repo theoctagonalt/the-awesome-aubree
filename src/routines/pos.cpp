@@ -1,10 +1,11 @@
+#include "./routines/pos.h"
 #include "main.h"
 #include "globals.h"
 #include "initialize.h"
-#include "arm.h"
-#include "intake.h"
-#include "doinker.h"
-#include "mogo.h"
+#include "./subsystems/arm.h"
+#include "./subsystems/intake.h"
+#include "./subsystems/doinker.h"
+#include "./subsystems/mogo.h"
 
 void pos_routine(int alliance_colour){ //0 = red, 1 = blue
     int starting_dir = alliance_colour ? 17.336 : 162.664;

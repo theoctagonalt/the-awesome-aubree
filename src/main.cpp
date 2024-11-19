@@ -1,9 +1,9 @@
 #include "main.h"
 #include "globals.h"
-#include "intake.h"
-#include "arm.h"
-#include "mogo.h"
-#include "doinker.h"
+#include "./subsystems/intake.h"
+#include "./subsystems/arm.h"
+#include "./subsystems/mogo.h"
+#include "./subsystems/doinker.h"
 
 int gameTime = 0;
 int r1_hold = 0;

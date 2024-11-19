@@ -1,6 +1,6 @@
 #include "main.h"
 #include "globals.h"
-#include "arm.h"
+#include "./subsystems/arm.h"
 
 namespace Arm{
   double arm_state_values[] = {REST_DEG, READY_DEG, SCORING_DEG};

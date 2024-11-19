@@ -1,4 +1,4 @@
-#include "mogo.h"
+#include "./subsystems/mogo.h"
 #include "globals.h"
 #include "main.h"
 

@@ -1,7 +1,9 @@
 #include "main.h"
 #include "globals.h"
 #include "initialize.h"
-#include "pos.h"
+#include "./routines/pos.h"
+#include "./routines/neg.h"
+#include "./routines/solo.h"
 
 void screen() {
 	// loop forever
@@ -36,5 +38,9 @@ void autonomous() {
 	fclose(output_file);
 	if(routine == POS_RED || routine == POS_BLUE){
 		pos_routine(routine == POS_BLUE);
+	}else if(routine == NEG_RED || routine == NEG_BLUE){
+		neg_routine(routine == NEG_BLUE);
+	}else if(routine == SOLO_RED || routine == SOLO_BLUE){
+		solo_routine(routine == SOLO_BLUE);
 	}
 }
