@@ -1,10 +1,7 @@
 #include "main.h"
 #include "globals.h"
 #include "initialize.h"
-#include "arm.h"
-#include "intake.h"
-#include "doinker.h"
-#include "mogo.h"
+#include "pos.h"
 
 void screen() {
 	// loop forever
@@ -37,95 +34,7 @@ void autonomous() {
 	}
 	chassis.waitUntilDone();
 	fclose(output_file);
-	if(routine == POS_RED){
-		//set the starting pose to the accurate point and heading
-		chassis.setPose(-52.8, -2.57, 162.664);
-		//move to point 1 facing backwards
-		chassis.moveToPoint(-11.28, -43.8, 3000, {.forwards=false});
-		chassis.waitUntilDone();
-		//when there, toggle the mobile goal clamp
-		Mogo::toggle();
-		//score our preload onto the goal
-		hooks_motor.move_velocity(200);
-		pros::delay(100);
-
-		//turn on the floating motor
-		floating_motor.move_velocity(200);
-		//move towards the indicated ring
-		chassis.moveToPoint(-24, -48, 500, {.forwards=true});
-		//wait until we're 12 inches down
-		chassis.waitUntil(12);
-		//let go of our mobile goal, stop the hooks
-		Mogo::toggle();
-		hooks_motor.brake();
-		chassis.waitUntilDone();
-		//wait 200 ms, for the ring to be finished intaked
-		pros::delay(200);
-		//stop the floating motor
-		floating_motor.brake();
-
-		//move to the second mobile goal
-		chassis.moveToPose(-24, -34, 0, 500, {.forwards=false});
-		chassis.waitUntilDone();
-		//turn on the clamp
-		Mogo::toggle();
-		pros::delay(200);
-		//score the stored mobile goal
-		hooks_motor.move_velocity(200);
-		floating_motor.move_velocity(200);
-		pros::delay(200);
-
-		//drive to the ladder
-		chassis.moveToPoint(-13, -17.5, 500, {.forwards=true});
-		chassis.waitUntilDone();
-		//stop the intake
-		hooks_motor.brake();
-		floating_motor.brake();
-		//raise the arm
-	}else if(routine == POS_BLUE){
-		//set the starting pose to the accurate point and heading
-		chassis.setPose(52.8, -2.57, 17.336);
-		//move to point 1 facing backwards
-		chassis.moveToPoint(11.28, -43.8, 3000, {.forwards=false});
-		chassis.waitUntilDone();
-		//when there, toggle the mobile goal clamp
-		Mogo::toggle();
-		//score our preload onto the goal
-		hooks_motor.move_velocity(200);
-		pros::delay(100);
-
-		//turn on the floating motor
-		floating_motor.move_velocity(200);
-		//move towards the indicated ring
-		chassis.moveToPoint(24, -48, 500, {.forwards=true});
-		//wait until we're 12 inches down
-		chassis.waitUntil(12);
-		//let go of our mobile goal, stop the hooks
-		Mogo::toggle();
-		hooks_motor.brake();
-		chassis.waitUntilDone();
-		//wait 200 ms, for the ring to be finished intaked
-		pros::delay(200);
-		//stop the floating motor
-		floating_motor.brake();
-
-		//move to the second mobile goal
-		chassis.moveToPose(24, -34, 0, 500, {.forwards=false});
-		chassis.waitUntilDone();
-		//turn on the clamp
-		Mogo::toggle();
-		pros::delay(200);
-		//score the stored mobile goal
-		hooks_motor.move_velocity(200);
-		floating_motor.move_velocity(200);
-		pros::delay(200);
-
-		//drive to the ladder
-		chassis.moveToPoint(13, -17.5, 500, {.forwards=true});
-		chassis.waitUntilDone();
-		//stop the intake
-		hooks_motor.brake();
-		floating_motor.brake();
-		//raise the arm
+	if(routine == POS_RED || routine == POS_BLUE){
+		pos_routine(routine == POS_BLUE);
 	}
 }
