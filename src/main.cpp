@@ -35,7 +35,6 @@ void opcontrol(){
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_Y)){
       Doinker::toggle();
     }
-  
     //arm
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L1)){
       Arm::next_state();
@@ -43,7 +42,7 @@ void opcontrol(){
       Arm::last_state();
     }
     Arm::arm_pid();
-
+    pros::lcd::print(0, "arm state: %i", Arm::get_state());
     //game
     if(pros::competition::is_connected() && !pros::competition::is_autonomous()){
 			gameTime++;

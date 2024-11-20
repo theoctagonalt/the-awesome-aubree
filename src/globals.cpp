@@ -21,7 +21,7 @@
 #define ARM_SENSOR 20  
 #define ARM_INTAKE_SENSOR -99
 #define INERTIAL_SENSOR 11
-#define AUTON_SELECTOR -99
+#define AUTON_SELECTOR 6
 
 
 pros::Controller master (pros::E_CONTROLLER_MASTER);
@@ -70,15 +70,15 @@ lemlib::ControllerSettings lateral_controller(3.5,
                                              0 //TODO: TUNE SLEW
                                              );
 
-lemlib::ControllerSettings arm_controller(0,
+lemlib::ControllerSettings arm_controller(0.03,
+                                          0, 
+                                          0.00001, 
                                           0, 
                                           0, 
                                           0, 
+                                          50, 
                                           0, 
-                                          0, 
-                                          0, 
-                                          0, 
-                                          0
+                                          30
                                           );
 
 lemlib::TrackingWheel left_side_imes (&left_motors, lemlib::Omniwheel::NEW_325, -5.8525, 400);
