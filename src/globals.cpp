@@ -19,7 +19,7 @@
 #define DOINKER 7
 
 #define ARM_SENSOR 20  
-#define ARM_INTAKE_SENSOR -99
+#define ARM_DISTANCE_SENSOR -99
 #define INERTIAL_SENSOR 11
 #define AUTON_SELECTOR 6
 
@@ -40,6 +40,7 @@ pros::adi::DigitalOut doinker (DOINKER);
 
 //sensors
 pros::Rotation arm_sensor (ARM_SENSOR);
+pros::Distance arm_distance_sensor (ARM_DISTANCE_SENSOR);
 pros::adi::DigitalIn auton_selector (AUTON_SELECTOR);
 pros::IMU inertial (INERTIAL_SENSOR);
 

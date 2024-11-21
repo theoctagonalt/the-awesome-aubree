@@ -18,6 +18,7 @@ extern pros::adi::DigitalOut doinker;
 
 extern pros::adi::DigitalIn auton_selector;
 extern pros::Rotation arm_sensor;
+extern pros::Distance arm_distance_sensor;
 
 extern lemlib::ControllerSettings arm_controller;
 extern lemlib::ControllerSettings angular_controller;

@@ -38,6 +38,9 @@ void opcontrol(){
     //arm
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L1)){
       Arm::next_state();
+      if(Arm::get_state() == SCORING){
+        hooks_motor.move_relative(-30, 50);
+      }
     }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L2)){
       Arm::last_state();
     }

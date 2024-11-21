@@ -6,11 +6,17 @@
 namespace Intake{
   int hooks = 0;
   int floating = 0;
+  int intake_timeout = 0;
+  bool arm_ready = false;
 
   //this method overrides all other ones
   void toggle(int state){
-    toggle_hooks(state);
-    toggle_floating(state);
+    if(hooks != floating){
+      toggle_hooks(state);  
+    }else{
+      toggle_hooks(state);
+      toggle_floating(state);
+    }
   }
   
   void toggle_hooks(int state){ //1 = forward, -1 = reverse
@@ -39,7 +45,19 @@ namespace Intake{
 
   void update_intake(){
     if(Arm::get_state() == READY){
-      //TODO: ADD LOGIC FOR DISTANCE SENSOR DETECTING AND AUTOMATIC TURNOFF
+      if(arm_distance_sensor.get_distance() < 500){
+        if(intake_timeout == 10){
+          toggle_hooks(1);
+          arm_ready = true;
+        }else{
+          intake_timeout++;
+        }
+      }else{
+        intake_timeout = 0;
+        arm_ready = false;
+      }
+    }else{
+      arm_ready = false;
     }
   }
 
