@@ -19,7 +19,7 @@
 #define DOINKER 7
 
 #define ARM_SENSOR 20  
-#define ARM_DISTANCE_SENSOR -99
+#define ARM_DISTANCE_SENSOR 18
 #define INERTIAL_SENSOR 11
 #define AUTON_SELECTOR 6
 
@@ -49,19 +49,19 @@ pros::IMU inertial (INERTIAL_SENSOR);
 lemlib::Drivetrain drivetrain (&left_motors, &right_motors, 11.705, lemlib::Omniwheel::NEW_275, 400, 2);
 
 //================================================================= TODO
-lemlib::ControllerSettings angular_controller(0, //kP
-                                              0, //kI
-                                              0, //kD
+lemlib::ControllerSettings angular_controller(1.15, //kP
+                                              0.003, //kI
+                                              0.14, //kD
                                               0, //anti-windup
                                               1, //small error range (in)
-                                              100, //small error timeout (ms)
+                                              200, //small error timeout (ms)
                                               3, //large error range (in)
                                               500, //large error timeout(ms)
                                               0  //maximum accel
                                               ); 
 
 lemlib::ControllerSettings lateral_controller(3.5,
-                                             0.002, 
+                                             0.003, 
                                              0.1, 
                                              3, 
                                              1, 

@@ -10,5 +10,6 @@ namespace Intake{
 
   int hooks_state();
   int floating_state();
+  void update_intake();
 }
 #endif

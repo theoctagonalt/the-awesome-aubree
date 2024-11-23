@@ -44,8 +44,8 @@ void opcontrol(){
     }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L2)){
       Arm::last_state();
     }
+    
     Arm::arm_pid();
-    pros::lcd::print(0, "arm state: %i", Arm::get_state());
     //game
     if(pros::competition::is_connected() && !pros::competition::is_autonomous()){
 			gameTime++;

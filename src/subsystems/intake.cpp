@@ -45,8 +45,9 @@ namespace Intake{
 
   void update_intake(){
     if(Arm::get_state() == READY){
-      if(arm_distance_sensor.get_distance() < 500){
-        if(intake_timeout == 10){
+      if(arm_distance_sensor.get_distance() < 50){
+        pros::lcd::print(0, "hiahsdij");
+        if(intake_timeout == 25){
           toggle_hooks(1);
           arm_ready = true;
         }else{

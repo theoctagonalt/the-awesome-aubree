@@ -6,9 +6,9 @@
 #define SCORING 2
 
 //TODO: SET ROTATION SENSOR VALUES
-#define REST_DEG 21100
-#define READY_DEG 17500
-#define SCORING_DEG 7410
+#define REST_DEG 21200
+#define READY_DEG 18000
+#define SCORING_DEG 7510
 
 namespace Arm{
   void next_state();
