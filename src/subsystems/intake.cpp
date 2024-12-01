@@ -62,6 +62,7 @@ namespace Intake{
       arm_ready = false;
       if(intake_switch.get_value() && hooks == 1){
         toggle_hooks(-1);
+        //TODO
       }
     }
   }
