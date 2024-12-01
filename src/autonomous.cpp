@@ -1,6 +1,7 @@
 #include "main.h"
 #include "globals.h"
 #include "initialize.h"
+#include "./subsystems/intake.h"
 #include "./routines/pos.h"
 #include "./routines/neg.h"
 #include "./routines/solo.h"
@@ -12,7 +13,7 @@ void screen() {
 			pros::lcd::print(0, "x: %f", pose.x); // print the x position
 			pros::lcd::print(1, "y: %f", pose.y); // print the y position
 			pros::lcd::print(2, "heading: %f", pose.theta); // print the heading
-			pros::delay(10);
+			pros::delay(50);
 	}
 }
 
@@ -20,11 +21,15 @@ void screen() {
 void autonomous() {
   int routine = get_routine();
 	pros::Task screenTask(screen);
-	if(routine == POS_RED || routine == POS_BLUE){
-		pos_routine(routine == POS_BLUE);
-	}else if(routine == NEG_RED || routine == NEG_BLUE){
-		neg_routine(routine == NEG_BLUE);
-	}else if(routine == SOLO_RED || routine == SOLO_BLUE){
-		solo_routine(routine == SOLO_BLUE);
+	pros::Task intakeTask(Intake::update_intake);
+	if(routine == POS){
+		pos_routine();
+	}else if(routine == NEG){
+		neg_routine();
+	}else if(routine == SOLO){
+		solo_routine();
+	}else if(routine == DRIVE_FORWARD){
+		chassis.setPose(0, 0, 90);
+		chassis.moveToPoint(24, 0, 3000);
 	}
 }

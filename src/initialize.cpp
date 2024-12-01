@@ -2,7 +2,8 @@
 #include "globals.h" 
 #include "initialize.h"
 
-int routine = NEG_BLUE;
+int routine = NO_ROUTE;
+int colour = RED;
 
 void initialize() {
 	pros::lcd::initialize();
@@ -15,32 +16,38 @@ void disabled() {}
 void competition_initialize() {
 	while(true){
 		pros::lcd::set_text(0, "Autonomous selector");
-		if(auton_selector.get_new_press()){
-			if(routine != 5) routine++;
-			else routine = -1;
+		if(intake_switch.get_new_press()){
+			if(colour != 1) colour++;
+			else {
+				colour = 0;
+				if(routine != 3) routine ++;
+				else routine = -1;				
+			}
 		}
 		std::string output = "";
 		switch(routine){
 			case NO_ROUTE:
-				output = "NO ROUTE";
+				output = "No Route";
 				break;
-			case SOLO_RED:
-				output = "SOLO RED";
+			case NEG:
+				output = "Neg";
 				break;
-			case NEG_RED:
-				output = "NEG RED";
+			case POS:
+				output = "Pos";
 				break;
-			case POS_RED:
-				output = "POS RED";
+			case SOLO:
+				output = "Solo";
 				break;
-			case SOLO_BLUE:
-				output = "SOLO BLUE";
+			case DRIVE_FORWARD:
+				output = "Drive Forward";
 				break;
-			case NEG_BLUE:
-				output = "NEG BLUE";
+		}
+		switch(colour){
+			case RED:
+				output += " Red";
 				break;
-			case POS_BLUE:
-				output = "POS BLUE";
+			case BLUE:
+				output += " Blue";
 				break;
 		}
 		pros::lcd::set_text(1, output);
@@ -50,4 +57,7 @@ void competition_initialize() {
 
 int get_routine(){
 	return routine;
+}
+int get_colour(){
+	return colour;
 }

@@ -6,8 +6,10 @@
 namespace Intake{
   int hooks = 0;
   int floating = 0;
-  int intake_timeout = 0;
+  int timeout = 0;
   bool arm_ready = false;
+
+
 
   //this method overrides all other ones
   void toggle(int state){
@@ -45,20 +47,22 @@ namespace Intake{
 
   void update_intake(){
     if(Arm::get_state() == READY){
-      if(arm_distance_sensor.get_distance() < 50){
-        pros::lcd::print(0, "hiahsdij");
-        if(intake_timeout == 25){
+      if(intake_switch.get_value()){
+        if(timeout == 25){
           toggle_hooks(1);
           arm_ready = true;
         }else{
-          intake_timeout++;
+          timeout++;
         }
       }else{
-        intake_timeout = 0;
+        timeout = 0;
         arm_ready = false;
       }
     }else{
       arm_ready = false;
+      if(intake_switch.get_value() && hooks == 1){
+        toggle_hooks(-1);
+      }
     }
   }
 

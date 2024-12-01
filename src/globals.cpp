@@ -19,9 +19,9 @@
 #define DOINKER 7
 
 #define ARM_SENSOR 20  
-#define ARM_DISTANCE_SENSOR 18
+#define INTAKE_COLOUR 18
 #define INERTIAL_SENSOR 11
-#define AUTON_SELECTOR 6
+#define INTAKE_SWITCH 6
 
 
 pros::Controller master (pros::E_CONTROLLER_MASTER);
@@ -40,8 +40,8 @@ pros::adi::DigitalOut doinker (DOINKER);
 
 //sensors
 pros::Rotation arm_sensor (ARM_SENSOR);
-pros::Distance arm_distance_sensor (ARM_DISTANCE_SENSOR);
-pros::adi::DigitalIn auton_selector (AUTON_SELECTOR);
+pros::Optical intake_colour (INTAKE_COLOUR);
+pros::adi::DigitalIn intake_switch (INTAKE_SWITCH);
 pros::IMU inertial (INERTIAL_SENSOR);
 
 //lemlib objects

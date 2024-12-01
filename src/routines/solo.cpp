@@ -7,6 +7,8 @@
 #include "./subsystems/doinker.h"
 #include "./subsystems/mogo.h"
 
-void solo_routine(int alliance_colour){
+void solo_routine(){
+  int colour = get_colour();
+  
   
 }

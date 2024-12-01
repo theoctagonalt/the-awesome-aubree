@@ -7,17 +7,19 @@
 #include "./subsystems/doinker.h"
 #include "./subsystems/mogo.h"
 
-void neg_routine(int alliance_colour){
-  int starting_dir = alliance_colour ? 66 : 294;
-  int n = alliance_colour ? 1 : -1;
-  int starting_y = alliance_colour ? 45 : 41;
+void neg_routine(){
+  int colour = get_colour();
+
+  int starting_dir = colour ? 66 : 294;
+  int n = colour ? 1 : -1;
+  int starting_y = colour ? 45 : 41;
   //set the starting pose to the acucurate heading and point
   chassis.setPose(n*55, starting_y, starting_dir);
   //move towards the alliance stake, backwards
   chassis.moveToPoint(n*29, 26, 1500, {.forwards=false});
   chassis.waitUntilDone();
   Mogo::toggle();
-  int second_dir = alliance_colour ? 355 : 5;
+  int second_dir = colour ? 355 : 5;
   pros::delay(50);
   chassis.moveToPoint(n*30, 21, 1000, {.forwards=false});
   chassis.waitUntilDone();
@@ -27,7 +29,7 @@ void neg_routine(int alliance_colour){
   chassis.waitUntilDone();
   chassis.moveToPoint(n*25, 52, 1500);
   chassis.waitUntilDone();
-  int third_dir = alliance_colour ? 240 : 120;
+  int third_dir = colour ? 240 : 120;
   chassis.turnToHeading(third_dir, 500);
   chassis.waitUntilDone();
   chassis.moveToPoint(n*19, 50, 1500);
