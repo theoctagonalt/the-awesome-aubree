@@ -9,6 +9,7 @@ void initialize() {
 	pros::lcd::initialize();
   chassis.calibrate(true);
 	master.clear();
+	intake_colour.set_led_pwm(50);
 }
 
 void disabled() {}
