@@ -67,11 +67,11 @@ namespace Intake{
             current_colour = BLUE;
           }
           if(current_colour != colour){
-            //start the ejection sequence
+            Intake::toggle_hooks(-1);
           }
         }else if(timeout > 0){
           if(timeout == 38){
-            //return to going forward
+            Intake::toggle_hooks(1);
           }else{
             timeout++;
           }
