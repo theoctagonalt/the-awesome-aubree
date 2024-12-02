@@ -2,13 +2,13 @@
 #include "main.h"
 #include "globals.h"
 #include "./subsystems/arm.h"
+#include "initialize.h"
 
 namespace Intake{
   int hooks = 0;
   int floating = 0;
   int timeout = 0;
-  bool arm_ready = false;
-
+  // bool arm_ready = false;
 
 
   //this method overrides all other ones
@@ -45,23 +45,37 @@ namespace Intake{
     hooks_motor.move_velocity(-200);
   }
 
-  void update_intake(){
+  void update_intake(int colour){
     if(Arm::get_state() == READY){
       if(intake_switch.get_value()){
         if(timeout == 25){
           toggle_hooks(1);
-          arm_ready = true;
         }else{
           timeout++;
         }
       }else{
         timeout = 0;
-        arm_ready = false;
       }
     }else{
-      arm_ready = false;
-      if(intake_switch.get_value() && hooks == 1){
-        toggle_hooks(-1);
+      double current_hue = intake_colour.get_hue();
+      int current_colour = -1;
+      if(intake_switch.get_value()){
+        if(timeout == 0 && hooks == 1){
+          if(current_hue < RED_HUE_MAX && current_hue > RED_HUE_MIN){
+            current_colour = RED;
+          }else if(current_hue < BLUE_HUE_MAX && current_hue > BLUE_HUE_MIN){
+            current_colour = BLUE;
+          }
+          if(current_colour != colour){
+            //start the ejection sequence
+          }
+        }else if(timeout > 0){
+          if(timeout == 38){
+            //return to going forward
+          }else{
+            timeout++;
+          }
+        }
         //TODO
       }
     }

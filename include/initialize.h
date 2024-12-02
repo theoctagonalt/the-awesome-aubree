@@ -4,6 +4,9 @@
 #define RED 0
 #define BLUE 1
 
+#define RED_HUE -1
+#define BLUE_HUE -1
+
 #define NO_ROUTE -1
 #define DRIVE_FORWARD 0
 #define NEG 1
