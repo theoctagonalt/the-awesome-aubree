@@ -1,6 +1,7 @@
 #include "main.h"
 #include "globals.h"
 #include "initialize.h"
+#include "autonomous.h"
 #include "./subsystems/intake.h"
 #include "./routines/pos.h"
 #include "./routines/neg.h"

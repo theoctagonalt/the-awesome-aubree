@@ -1,14 +1,26 @@
 #include "main.h"
 #include "globals.h"
+#include "autonomous.h"
 #include "./subsystems/intake.h"
 #include "./subsystems/arm.h"
 #include "./subsystems/mogo.h"
 #include "./subsystems/doinker.h"
+#include "initialize.h"
 
 int gameTime = 0;
 int r1_hold = 0;
 void opcontrol(){
+  intakeTask.suspend();
+  Intake::set_colour(get_colour());
 	while(true){
+    double current_hue = intake_colour.get_hue();
+    pros::lcd::print(1, "%f", intake_colour.get_hue());
+    if(current_hue < RED_HUE_MAX && current_hue > RED_HUE_MIN){
+      Intake::set_last_colour(RED);
+    }else if(current_hue < BLUE_HUE_MAX && current_hue > BLUE_HUE_MIN){
+      Intake::set_last_colour(BLUE);
+    }
+
     //get the y and x values of the left and right joysticks respectively
     int throttle = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int turn = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
@@ -25,6 +37,7 @@ void opcontrol(){
     }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R2)){
       Intake::toggle(-1);
     }
+    Intake::update_intake();
 
     //mogo functions
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_RIGHT)){

@@ -8,6 +8,8 @@ namespace Intake{
   int hooks = 0;
   int floating = 0;
   int timeout = 0;
+  int colour;
+  int last_colour = -1;
   // bool arm_ready = false;
 
 
@@ -45,7 +47,11 @@ namespace Intake{
     hooks_motor.move_velocity(-200);
   }
 
-  void update_intake(int colour){
+  void set_colour(int new_colour){
+    colour = new_colour;
+  }
+
+  void update_intake(){
     if(Arm::get_state() == READY){
       if(intake_switch.get_value()){
         if(timeout == 25){
@@ -57,30 +63,28 @@ namespace Intake{
         timeout = 0;
       }
     }else{
-      double current_hue = intake_colour.get_hue();
-      int current_colour = -1;
       if(intake_switch.get_value()){
+        pros::lcd::print(5, "toggle");
         if(timeout == 0 && hooks == 1){
-          if(current_hue < RED_HUE_MAX && current_hue > RED_HUE_MIN){
-            current_colour = RED;
-          }else if(current_hue < BLUE_HUE_MAX && current_hue > BLUE_HUE_MIN){
-            current_colour = BLUE;
-          }
-          if(current_colour != colour){
+          if(last_colour != colour && last_colour != -1){
             Intake::toggle_hooks(-1);
-          }
-        }else if(timeout > 0){
-          if(timeout == 38){
-            Intake::toggle_hooks(1);
-          }else{
             timeout++;
           }
         }
-        //TODO
+      }
+      if(timeout > 0){
+        if(timeout == 5 && hooks == -1){
+          Intake::toggle_hooks(1);
+          timeout=0;
+        }else{
+          timeout++;
+        }
       }
     }
   }
-
+  void set_last_colour(int new_colour){
+    last_colour = new_colour;
+  }
   int hooks_state(){
     return hooks;
   }

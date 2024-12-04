@@ -1,6 +1,7 @@
 #include "main.h"
 #include "globals.h" 
 #include "initialize.h"
+#include "subsystems/intake.h"
 
 int routine = NO_ROUTE;
 int colour = RED;
@@ -51,6 +52,7 @@ void competition_initialize() {
 				output += " Blue";
 				break;
 		}
+		Intake::set_colour(colour);
 		pros::lcd::set_text(1, output);
 		pros::delay(100);
 	}
