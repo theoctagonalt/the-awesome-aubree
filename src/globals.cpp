@@ -19,7 +19,7 @@
 #define DOINKER 7
 
 #define ARM_SENSOR 20  
-#define INTAKE_COLOUR 7
+#define INTAKE_COLOUR 18
 #define INERTIAL_SENSOR 11
 #define INTAKE_SWITCH 6
 

@@ -69,6 +69,7 @@ namespace Intake{
           if(last_colour != colour && last_colour != -1){
             Intake::toggle_hooks(-1);
             timeout++;
+            last_colour = -1;
           }
         }
       }

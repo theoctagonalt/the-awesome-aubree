@@ -6,8 +6,8 @@
 
 #define RED_HUE_MIN 30
 #define RED_HUE_MAX 0
-#define BLUE_HUE_MIN 200
-#define BLUE_HUE_MAX 260
+#define BLUE_HUE_MIN 150
+#define BLUE_HUE_MAX 230
 
 #define NO_ROUTE -1
 #define DRIVE_FORWARD 0
