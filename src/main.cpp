@@ -10,7 +10,6 @@
 int gameTime = 0;
 int r1_hold = 0;
 void opcontrol(){
-  intakeTask.suspend();
   Intake::set_colour(get_colour());
 	while(true){
     double current_hue = intake_colour.get_hue();
@@ -19,6 +18,9 @@ void opcontrol(){
       Intake::set_last_colour(RED);
     }else if(current_hue < BLUE_HUE_MAX && current_hue > BLUE_HUE_MIN){
       Intake::set_last_colour(BLUE);
+      pros::lcd::print(0, "blue");
+    }else{
+      pros::lcd::print(0, "na");
     }
 
     //get the y and x values of the left and right joysticks respectively
