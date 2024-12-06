@@ -18,28 +18,29 @@ void opcontrol(){
       Intake::set_last_colour(RED);
     }else if(current_hue < BLUE_HUE_MAX && current_hue > BLUE_HUE_MIN){
       Intake::set_last_colour(BLUE);
-      pros::lcd::print(0, "blue");
-    }else{
-      pros::lcd::print(0, "na");
     }
+    pros::lcd::print(0, "%i", Intake::get_last_colour());
 
     //get the y and x values of the left and right joysticks respectively
     int throttle = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int turn = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
     //create a lemlib curvature function to control the drivetrain
-    chassis.curvature(throttle, turn);
+    // chassis.curvature(throttle, turn);
 
     //intake functions
     
-    int hooks_prev_state = 0;
-    int floating_prev_state = 0;
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R1)){
       Intake::toggle(1);
     }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R2)){
       Intake::toggle(-1);
     }
     Intake::update_intake();
+
+    if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A)){
+      Intake::set_colour(!Intake::get_colour());
+      master.rumble("..");
+    }
 
     //mogo functions
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_RIGHT)){
@@ -54,7 +55,7 @@ void opcontrol(){
     if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L1)){
       Arm::next_state();
       if(Arm::get_state() == SCORING){
-        hooks_motor.move_relative(-30, 50);
+        hooks_motor.move_relative(-50, 50);
       }
     }else if(master.get_digital_new_press(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L2)){
       Arm::last_state();

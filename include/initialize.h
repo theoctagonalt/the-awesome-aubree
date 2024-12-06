@@ -4,8 +4,8 @@
 #define RED 0
 #define BLUE 1
 
-#define RED_HUE_MIN 30
-#define RED_HUE_MAX 0
+#define RED_HUE_MIN 0
+#define RED_HUE_MAX 30
 #define BLUE_HUE_MIN 150
 #define BLUE_HUE_MAX 230
 

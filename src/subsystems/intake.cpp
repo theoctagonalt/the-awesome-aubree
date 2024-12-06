@@ -50,6 +50,9 @@ namespace Intake{
   void set_colour(int new_colour){
     colour = new_colour;
   }
+  int get_colour(){
+    return colour;
+  }
 
   void update_intake(){
     if(Arm::get_state() == READY){
@@ -85,6 +88,9 @@ namespace Intake{
   }
   void set_last_colour(int new_colour){
     last_colour = new_colour;
+  }
+  int get_last_colour(){
+    return last_colour;
   }
   int hooks_state(){
     return hooks;

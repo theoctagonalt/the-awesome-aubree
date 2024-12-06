@@ -9,7 +9,9 @@ namespace Intake{
   void reverse();
   void set_colour(int new_colour);
 
+  int get_colour();
   void set_last_colour(int new_colour);
+  int get_last_colour();
   int hooks_state();
   int floating_state();
   void update_intake();
