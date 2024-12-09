@@ -3,8 +3,8 @@
 #include "initialize.h"
 #include "subsystems/intake.h"
 
-int routine = NO_ROUTE;
-int colour = RED;
+int routine = NEG;
+int colour = BLUE;
 
 void initialize() {
 	pros::lcd::initialize();

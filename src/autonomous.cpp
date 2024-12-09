@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "initialize.h"
 #include "autonomous.h"
+#include "./subsystems/arm.h"
 #include "./subsystems/intake.h"
 #include "./routines/pos.h"
 #include "./routines/neg.h"
@@ -17,12 +18,24 @@ void screen() {
 			pros::delay(50);
 	}
 }
-
+void update_subsystems(){
+	while(pros::competition::is_autonomous()){
+		double current_hue = intake_colour.get_hue();
+    if(current_hue < RED_HUE_MAX && current_hue > RED_HUE_MIN){
+      Intake::set_last_colour(RED);
+    }else if(current_hue < BLUE_HUE_MAX && current_hue > BLUE_HUE_MIN){
+      Intake::set_last_colour(BLUE);
+    }
+		Intake::update_intake();
+		Arm::arm_pid();
+		pros::delay(20);
+	}
+}
 
 void autonomous() {
   int routine = get_routine();
 	pros::Task screenTask(screen);
-	pros::Task intakeTask(Intake::update_intake);
+	pros::Task subsystemTask(update_subsystems);
 	if(routine == POS){
 		pos_routine();
 	}else if(routine == NEG){

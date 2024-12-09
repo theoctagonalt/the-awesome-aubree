@@ -70,14 +70,14 @@ namespace Intake{
         pros::lcd::print(3, "toggle");
         if(timeout == 0 && hooks == 1){
           if(last_colour != colour && last_colour != -1){
-            Intake::toggle_hooks(-1);
+            Intake::toggle_hooks(1);
             timeout++;
             last_colour = -1;
           }
         }
       }
       if(timeout > 0){
-        if(timeout == 25 && hooks == -1){
+        if(timeout == 15 && hooks == 0){
           Intake::toggle_hooks(1);
           timeout=0;
         }else{

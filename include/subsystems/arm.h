@@ -7,7 +7,7 @@
 
 //TODO: SET ROTATION SENSOR VALUES
 #define REST_DEG 28500
-#define READY_DEG 26300
+#define READY_DEG 26500
 #define SCORING_DEG 15900
 
 namespace Arm{

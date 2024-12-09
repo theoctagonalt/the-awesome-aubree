@@ -9,39 +9,44 @@
 
 void neg_routine(){
   int colour = get_colour();
-
-  int starting_dir = colour ? 66 : 294;
-  int n = colour ? 1 : -1;
-  int starting_y = colour ? 45 : 41;
+  int starting_dir = colour ? 0 : 0;
+  int n = colour ? -1 : 1;
+  int starting_y = colour ? -8 : -8;
   //set the starting pose to the acucurate heading and point
-  chassis.setPose(n*55, starting_y, starting_dir);
-  //move towards the alliance stake, backwards
-  chassis.moveToPoint(n*29, 26, 1500, {.forwards=false});
+  chassis.setPose(n*53, starting_y, starting_dir);
+
+  chassis.moveToPoint(n*65, 9, 750);
+  chassis.waitUntilDone();
+  Arm::set_state(SCORING);
+  pros::delay(750);
+
+  Arm::set_state(REST);
+  chassis.moveToPoint(n*35, -8, 500, {.forwards=false});
+  chassis.waitUntilDone();
+  chassis.moveToPoint(n*23, -16, 1000, {.forwards=false});
   chassis.waitUntilDone();
   Mogo::toggle();
-  int second_dir = colour ? 355 : 5;
-  pros::delay(50);
-  chassis.moveToPoint(n*30, 21, 1000, {.forwards=false});
+
+  chassis.moveToPoint(n*10, -20, 1000);
   chassis.waitUntilDone();
-  pros::delay(50);
+
   Intake::toggle(1);
-  chassis.moveToPoint(n*31, 37, 500);
+  chassis.moveToPoint(n*2, -34, 1000, {.maxSpeed=100});
   chassis.waitUntilDone();
-  chassis.moveToPoint(n*25, 52, 1500);
+  
+  chassis.moveToPoint(n*5, -30, 1000, {.forwards=false});
   chassis.waitUntilDone();
-  int third_dir = colour ? 240 : 120;
-  chassis.turnToHeading(third_dir, 500);
+
+  pros::delay(500);
+
+  chassis.moveToPoint(n*29, -40, 1000);
   chassis.waitUntilDone();
-  chassis.moveToPoint(n*19, 50, 1500);
+
+  pros::delay(500);
+
+  chassis.moveToPoint(n*2, -53, 1000);
   chassis.waitUntilDone();
-  chassis.moveToPoint(n*8, 48, 1500); 
-  chassis.waitUntilDone();
-  chassis.moveToPoint(n*25, 45, 1500, {.forwards=false});
-  chassis.waitUntilDone();
-  chassis.moveToPoint(n*8, 55, 1500); 
-  chassis.waitUntilDone();
-  chassis.moveToPoint(n*25, 45, 1500, {.forwards=false});
-  chassis.waitUntilDone();
-  chassis.moveToPoint(n*6, 33, 1500);
-  chassis.waitUntilDone();
+
+  master.rumble("..");
+  
 }

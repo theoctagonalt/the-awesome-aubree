@@ -49,24 +49,24 @@ pros::IMU inertial (INERTIAL_SENSOR);
 lemlib::Drivetrain drivetrain (&left_motors, &right_motors, 11.705, lemlib::Omniwheel::NEW_275, 400, 2);
 
 //================================================================= TODO
-lemlib::ControllerSettings angular_controller(1.15, //kP
-                                              0.003, //kI
-                                              0.14, //kD
-                                              0, //anti-windup
+lemlib::ControllerSettings angular_controller(1.6, //kP
+                                              0.01, //kI
+                                              0, //kD
+                                              7.5, //anti-windup
                                               1, //small error range (in)
-                                              200, //small error timeout (ms)
-                                              3, //large error range (in)
+                                              1000, //small error timeout (ms)
+                                              0, //large error range (in)
                                               500, //large error timeout(ms)
                                               0  //maximum accel
                                               ); 
 
 lemlib::ControllerSettings lateral_controller(3.5,
-                                             0.003, 
                                              0.1, 
-                                             3, 
+                                             0.1, 
+                                             5, 
                                              1, 
                                              100, 
-                                             2, 
+                                             0, 
                                              500, 
                                              0 //TODO: TUNE SLEW
                                              );

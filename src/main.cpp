@@ -26,7 +26,7 @@ void opcontrol(){
     int turn = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
     //create a lemlib curvature function to control the drivetrain
-    // chassis.curvature(throttle, turn);
+    chassis.curvature(throttle, turn);
 
     //intake functions
     
