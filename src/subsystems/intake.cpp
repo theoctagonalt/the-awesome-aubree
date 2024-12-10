@@ -67,7 +67,6 @@ namespace Intake{
       }
     }else{
       if(intake_switch.get_value()){
-        pros::lcd::print(3, "toggle");
         if(timeout == 0 && hooks == 1){
           if(last_colour != colour && last_colour != -1){
             Intake::toggle_hooks(1);
