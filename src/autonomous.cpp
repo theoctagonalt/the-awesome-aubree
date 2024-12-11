@@ -6,7 +6,7 @@
 #include "./subsystems/intake.h"
 #include "./routines/pos.h"
 #include "./routines/neg.h"
-#include "./routines/solo.h"
+#include "./routines/skills.h"
 
 void screen() {
 	// loop forever
@@ -40,8 +40,8 @@ void autonomous() {
 		pos_routine();
 	}else if(routine == NEG){
 		neg_routine();
-	}else if(routine == SOLO){
-		solo_routine();
+	}else if(routine == SKILLS){
+		skills();
 	}else if(routine == DRIVE_FORWARD){
 		chassis.setPose(0, 0, 90);
 		chassis.moveToPoint(24, 0, 3000);

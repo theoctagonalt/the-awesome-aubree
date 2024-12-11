@@ -13,7 +13,7 @@
 #define DRIVE_FORWARD 0
 #define NEG 1
 #define POS 2
-#define SOLO 3
+#define SKILLS 3
 
 #define QUALS 0
 #define ELIMS 1

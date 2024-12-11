@@ -42,8 +42,8 @@ void competition_initialize() {
 			case POS:
 				output = "Pos";
 				break;
-			case SOLO:
-				output = "Solo";
+			case SKILLS:
+				output = "Skills";
 				break;
 			case DRIVE_FORWARD:
 				output = "Drive Forward";
@@ -59,9 +59,9 @@ void competition_initialize() {
 		}
 		switch(match){
 			case QUALS:
-				output+= "Quals";
+				output+= " Quals";
 			case ELIMS:
-				output+= "Elims";
+				output+= " Elims";
 		}
 		Intake::set_colour(colour);
 		pros::lcd::set_text(1, output);
