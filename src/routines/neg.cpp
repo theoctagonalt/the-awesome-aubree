@@ -11,10 +11,11 @@ void neg_routine(){
   int colour = get_colour();
   int starting_dir = colour ? 0 : 0;
   int n = colour ? -1 : 1;
+  int starting_x = colour ? -53 : 56;
   int starting_y = colour ? -8 : -8;
   //set the starting pose to the acucurate heading and point
-  chassis.setPose(n*53, starting_y, starting_dir);
-
+  chassis.setPose(starting_x, starting_y, starting_dir);
+  
   chassis.moveToPoint(n*65, 9, 750);
   chassis.waitUntilDone();
   Arm::set_state(SCORING);
@@ -39,14 +40,45 @@ void neg_routine(){
 
   pros::delay(500);
 
-  chassis.moveToPoint(n*29, -40, 1000);
+  chassis.moveToPoint(n*29, -45, 1000);
   chassis.waitUntilDone();
 
   pros::delay(500);
 
-  chassis.moveToPoint(n*2, -53, 1000);
+  chassis.moveToPoint(0, -49, 1000);
   chassis.waitUntilDone();
 
+  pros::delay(500);
+
+  chassis.moveToPoint(n*15, -42, 1000, {.forwards=false});
+  chassis.waitUntilDone();
+
+  chassis.moveToPoint(0, -47, 1000);
+  chassis.waitUntilDone();
+
+  pros::delay(500);
+
+  if(get_match() == QUALS){
+    Intake::toggle();
+
+    chassis.moveToPoint(n*24, -24, 1000, {.forwards=false});
+    chassis.waitUntilDone();
+    
+    chassis.moveToPoint(n*18, -2, 1000, {.forwards=false});
+    chassis.waitUntilDone();
+
+    Doinker::toggle();
+
+    chassis.turnToHeading(n*45, 1000);
+    chassis.waitUntilDone();
+  }else{
+    chassis.moveToPoint(n*46, 3, 1500);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(n*46, 40, 1000);
+    chassis.waitUntilDone();
+
+    Doinker::toggle();
+  }
   master.rumble("..");
   
 }

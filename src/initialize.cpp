@@ -4,7 +4,8 @@
 #include "subsystems/intake.h"
 
 int routine = NEG;
-int colour = BLUE;
+int colour = RED;
+int match = ELIMS;
 
 void initialize() {
 	pros::lcd::initialize();
@@ -23,7 +24,11 @@ void competition_initialize() {
 			else {
 				colour = 0;
 				if(routine != 3) routine ++;
-				else routine = -1;				
+				else {
+					routine = -1;
+					if(match != 1) match++;
+					else match = 0; 
+				}				
 			}
 		}
 		std::string output = "";
@@ -52,6 +57,12 @@ void competition_initialize() {
 				output += " Blue";
 				break;
 		}
+		switch(match){
+			case QUALS:
+				output+= "Quals";
+			case ELIMS:
+				output+= "Elims";
+		}
 		Intake::set_colour(colour);
 		pros::lcd::set_text(1, output);
 		pros::delay(100);
@@ -63,4 +74,7 @@ int get_routine(){
 }
 int get_colour(){
 	return colour;
+}
+int get_match(){
+	return match;
 }

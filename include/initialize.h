@@ -15,9 +15,13 @@
 #define POS 2
 #define SOLO 3
 
+#define QUALS 0
+#define ELIMS 1
+
 
 int get_routine();
 int get_colour();
+int get_match();
 void initialize();
 void competition_initialize();
 
