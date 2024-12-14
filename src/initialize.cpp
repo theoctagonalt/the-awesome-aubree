@@ -3,7 +3,7 @@
 #include "initialize.h"
 #include "subsystems/intake.h"
 
-int routine = NEG;
+int routine = POS;
 int colour = RED;
 int match = ELIMS;
 
@@ -60,8 +60,10 @@ void competition_initialize() {
 		switch(match){
 			case QUALS:
 				output+= " Quals";
+				break;
 			case ELIMS:
 				output+= " Elims";
+				break;
 		}
 		Intake::set_colour(colour);
 		pros::lcd::set_text(1, output);

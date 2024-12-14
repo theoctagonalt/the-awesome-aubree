@@ -3,7 +3,7 @@
 #include "./subsystems/arm.h"
 
 namespace Arm{
-  double arm_state_values[] = {REST_DEG, READY_DEG, SCORING_DEG};
+  double arm_state_values[] = {REST_DEG, READY_DEG, SCORING_DEG, MOGO_SCORING_DEG};
   bool arm_pid_activated = false;
   int target_arm_state = REST;
   int target_arm_state_value = 0;

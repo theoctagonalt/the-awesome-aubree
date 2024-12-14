@@ -9,52 +9,58 @@
 
 void pos_routine(){
 		int colour = get_colour();
-		
-    int starting_dir = colour ? 72.664 : 341.664;
-    int n = colour ? 1 : -1;
+		int n = colour ? 1 : -1;
+		int starting_x = colour ? 60 : -60;
+		int starting_theta = colour ? 215: 135;
+		chassis.setPose(starting_x, -20, starting_theta);
 
-    //set the starting pose to the accurate point and heading
-		chassis.setPose(n*52.8, -2.57, starting_dir);
-		//move to point 1 facing backwards
-		chassis.moveToPoint(n*11.28, -43.8, 3000, {.forwards=false});
+		Intake::toggle(1);
+
+		chassis.moveToPoint(n*24, -46, 750);
 		chassis.waitUntilDone();
-		//when there, toggle the mobile goal clamp
-		Mogo::toggle();
-		//score our preload onto the goal
-		hooks_motor.move_velocity(200);
+
+		chassis.moveToPoint(n*12, -47, 750);
+		chassis.waitUntilDone();
+
+		Arm::set_state(MOGO_SCORING);
+
 		pros::delay(100);
+		Intake::toggle(1);
 
-		//turn on the floating motor
-		floating_motor.move_velocity(200);
-		//move towards the indicated ring
-		chassis.moveToPoint(n*24, -48, 500, {.forwards=true});
-		//wait until we're 12 inches down
-		chassis.waitUntil(12);
-		//let go of our mobile goal, stop the hooks
+		pros::delay(500);
+
+		Doinker::toggle();
+		chassis.moveToPoint(n*20, -40, 500);
+		chassis.waitUntilDone();
+
+		int knock_over = colour ? 10 : 350;
+
+		chassis.turnToHeading(knock_over, 1000, {.maxSpeed=100});
+		chassis.waitUntilDone();
+
+		Doinker::toggle();
+		pros::delay(500);
+
+		chassis.moveToPoint(n*20, -60, 1000, {.forwards=false});
+		chassis.waitUntilDone();
+
+		chassis.turnToHeading(175, 1000);
+		chassis.waitUntilDone();
+
+		Arm::set_state(REST);
+
+		int mogo_2_heading = colour ? 0 : 90;
+
+		chassis.turnToHeading(mogo_2_heading, 1000);
+		chassis.waitUntilDone();
+
+		chassis.moveToPoint(n*35, -40, 500, {.forwards=false});
+		chassis.waitUntilDone();
+
+		chassis.moveToPoint(n*32, -20, 1000, {.forwards=false});
+		chassis.waitUntilDone();
+
 		Mogo::toggle();
-		hooks_motor.brake();
-		chassis.waitUntilDone();
-		//wait 200 ms, for the ring to be finished intaked
-		pros::delay(200);
-		//stop the floating motor
-		floating_motor.brake();
-
-		//move to the second mobile goal
-		chassis.moveToPose(n*24, -34, 0, 500, {.forwards=false});
-		chassis.waitUntilDone();
-		//turn on the clamp
-		Mogo::toggle();
-		pros::delay(200);
-		//score the stored mobile goal
-		hooks_motor.move_velocity(200);
-		floating_motor.move_velocity(200);
-		pros::delay(200);
-
-		//drive to the ladder
-		chassis.moveToPoint(n*13, -17.5, 500, {.forwards=true});
-		chassis.waitUntilDone();
-		//stop the intake
-		hooks_motor.brake();
-		floating_motor.brake();
-		//raise the arm
+		pros::delay(100);
+		Intake::toggle(1);
 }

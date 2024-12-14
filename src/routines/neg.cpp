@@ -16,7 +16,9 @@ void neg_routine(){
   //set the starting pose to the acucurate heading and point
   chassis.setPose(starting_x, starting_y, starting_dir);
   
-  chassis.moveToPoint(n*65, 9, 750);
+  int alliance_stake_x = colour ? n*65 : n*68;
+
+  chassis.moveToPoint(alliance_stake_x, 9, 750);
   chassis.waitUntilDone();
   Arm::set_state(SCORING);
   pros::delay(750);
@@ -38,12 +40,12 @@ void neg_routine(){
   chassis.moveToPoint(n*5, -30, 1000, {.forwards=false});
   chassis.waitUntilDone();
 
-  pros::delay(500);
+  pros::delay(750);
 
   chassis.moveToPoint(n*29, -45, 1000);
   chassis.waitUntilDone();
 
-  pros::delay(500);
+  pros::delay(750);
 
   chassis.moveToPoint(0, -49, 1000);
   chassis.waitUntilDone();
@@ -69,7 +71,9 @@ void neg_routine(){
 
     Doinker::toggle();
 
-    chassis.turnToHeading(n*45, 1000);
+    int turn = colour ? n*45 : -340;
+
+    chassis.turnToHeading(turn, 1000);
     chassis.waitUntilDone();
   }else{
     chassis.moveToPoint(n*46, 3, 1500);
