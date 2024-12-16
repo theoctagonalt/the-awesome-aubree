@@ -34,7 +34,7 @@ void neg_routine(){
   chassis.waitUntilDone();
 
   Intake::toggle(1);
-  chassis.moveToPoint(n*2, -34, 1000, {.maxSpeed=100});
+  chassis.moveToPoint(n*1, -35, 1000, {.maxSpeed=100});
   chassis.waitUntilDone();
   
   chassis.moveToPoint(n*5, -30, 1000, {.forwards=false});
@@ -71,7 +71,7 @@ void neg_routine(){
 
     Doinker::toggle();
 
-    int turn = colour ? n*45 : -340;
+    int turn = colour ? n*75 : -340;
 
     chassis.turnToHeading(turn, 1000);
     chassis.waitUntilDone();

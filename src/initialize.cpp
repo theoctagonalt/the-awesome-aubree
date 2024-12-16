@@ -3,7 +3,7 @@
 #include "initialize.h"
 #include "subsystems/intake.h"
 
-int routine = POS;
+int routine = NEG;
 int colour = RED;
 int match = ELIMS;
 
